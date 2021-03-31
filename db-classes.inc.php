@@ -59,6 +59,16 @@ class CompaniesDB
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+    public function getSingleCompany($companySymbol)
+    {
+        $sql = self::$baseSQL . " WHERE symbol=?";
+        $statement = DatabaseHelper::runQuery(
+            $this->pdo,
+            $sql,
+            array($companySymbol)
+        );
+        return $statement->fetchAll();
+    }
 }
 
 class HistoryDB

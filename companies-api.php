@@ -1,6 +1,6 @@
 <?php
 require_once 'config.inc.php';
-require_once 'lab14a-db-classes.inc.php';
+require_once 'db-classes.inc.php';
 
 // Tell the browser to expect JSON rather than HTML
 header('Content-Type: application/json');
@@ -9,11 +9,11 @@ header("Access-Control-Allow-Origin: *");
 
 try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-    $gateway = new PaintingDB($conn);
-    if (isCorrectQueryStringInfo("artist")){
-        $paintings = $gateway->getAllForArtist($_GET["artist"]);
-    } else if (isCorrectQueryStringInfo("gallery")){
-        $paintings = $gateway->getAllForGallery($_GET["gallery"]);
+    $gateway = new CompaniesDB($conn);
+    if (isCorrectQueryStringInfo("company")){
+        $paintings = $gateway->getAll($_GET["company"]);
+    } else if (isCorrectQueryStringInfo("symbol")){
+        $paintings = $gateway->getSingleCompany($_GET["symbol"]);
     } else {
         $paintings = $gateway->getAll();
     }
