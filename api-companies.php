@@ -11,13 +11,13 @@ try {
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     $gateway = new CompaniesDB($conn);
     if (isCorrectQueryStringInfo("company")){
-        $paintings = $gateway->getAll($_GET["company"]);
+        $companies = $gateway->getAll($_GET["company"]);
     } else if (isCorrectQueryStringInfo("symbol")){
-        $paintings = $gateway->getSingleCompany($_GET["symbol"]);
+        $companies = $gateway->getSingleCompany($_GET["symbol"]);
     } else {
-        $paintings = $gateway->getAll();
+        $companies = $gateway->getAll();
     }
-    echo json_encode($paintings, JSON_NUMERIC_CHECK);
+    echo json_encode($companies, JSON_NUMERIC_CHECK);
 } catch (Exception $e) {
     die($e->getMessage());
 }
@@ -29,4 +29,3 @@ function isCorrectQueryStringInfo($param){
         return false;
     }
 }
-?>

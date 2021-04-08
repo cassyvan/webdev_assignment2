@@ -2,9 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const hamburgerIcon = document.querySelector(".hamburgerIcon");
     const navLinks = document.querySelector("#navLinks");
-    const companiesAPi = "http://localhost/webdev_assignment2/api-companies.php";
-    console.log(companiesAPi);
-    console.log("pooop");
+    const companiesAPI = "api-companies.php";
+    const companyList = document.querySelector(".companiesList");
 
     // display hamburger menu was found in https://www.w3schools.com/howto/howto_js_mobile_navbar.asp
     navLinks.style.display = "none";
@@ -15,62 +14,21 @@ document.addEventListener("DOMContentLoaded", function () {
             navLinks.style.display = "none";
         }
     })
-    fetchCompanies();
 
-    function fetchCompanies() {
-        if (localStorage.length === 0) {
-            fetch(companiesAPI)
-                .then(response => response.json())
-                .then(data => {
-                    updateStorage(data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
-        generateCompanyList();
-        displayCompanyList();
-    }
+    fetch(companiesAPI)
+        .then(data => data.json())
+        .then(data => outputCompanyList(data))
+        .catch(err => console.log(err))
 
-    function updateStorage(data) {
-        for (let i = 0; i < data.length; i++) {
-            localStorage.setItem(data[i].name, JSON.stringify(data[i]))
-            nameKeys.push(data[i].name);
-        }
-        console.log(nameKeys);
-    }
-
-    function generateCompanyList() {
-
-        for (let k of nameKeys) {
-            let company = JSON.parse(localStorage.getItem(k))
-            companyList.push(company);
-        }
-        companyList.sort(sortAlphaName);
-    }
-
-    function displayCompanyList() {
-        document.querySelector("#loader1").style.display = "none";
-        createListElements(companyList)
-    }
-
-
-    function createListElements(list) {
-        for (let li of list) {
+    function outputCompanyList(companies) {
+        for (let c of companies) {
             let newItem = document.createElement("li");
-            newItem.textContent = li.name;
-            companyListElement.appendChild(newItem);
+            newItem.textContent = c.name;
+            companyList.appendChild(newItem);
             newItem.addEventListener("click", () => {
-                addCompanyInfoElementSections(li);
-                populateCompanyInfo(li);
-                updateMap(li);
-                let stockDataToRetrieve = stockDataAPI + li.symbol
-                console.log(stockDataToRetrieve)
-                retrieveStockData(stockDataToRetrieve);
+                // page redirection found on https://www.codegrepper.com/code-examples/html/javascript+onclick+redirect+to+url
+                location.href = `single-company.php?symbol=${c.symbol}`
             })
         }
-        console.log("list elements created");
     }
-
-
 })
