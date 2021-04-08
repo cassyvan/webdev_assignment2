@@ -1,0 +1,20 @@
+.logo {
+    max-height: 100px;
+    width: auto;
+}
+
+.nav{
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #7aa0d6;
+}
+
+.footer{
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #7aa0d6;
+}
+
+.container{
+    background-color: #b0c7e8;
+}
