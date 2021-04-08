@@ -7,7 +7,7 @@ function createHead(){
             <title>Stock Browser</title>
   <meta charset=utf-8>";
   echo "<link rel='stylesheet' href='styling/styling.css'>";
-  echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>";
+//   echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>";
   //The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp
 echo "</head>";
 }
@@ -16,7 +16,7 @@ function displayNav($isHome) {
 
     echo "<nav class='nav'>";
     echo "<img src='images/mru_logo.jpg' class='logo'>";
-    echo "<button class='hamburgerIcon'><i class='fa fa-bars'></i></button>";
+    echo "<div class='hamburgerIcon'><div></div><div></div><div></div></i></div>";
     echo "<div id='navLinks'>";
     if (!$isHome) {
         echo "<a href='index.php'>Home</a>";
@@ -33,6 +33,3 @@ function displayNav($isHome) {
 
 
 }
-
-
-?>

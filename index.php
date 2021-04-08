@@ -47,7 +47,8 @@ require_once 'includes/db-classes.inc.php';
 </head> -->
 <?php 
 createHead();
-displayNav(true) ?>
+displayNav(true);
+echo "poo";?>
 <body>
     <div class="container">
     </div>
