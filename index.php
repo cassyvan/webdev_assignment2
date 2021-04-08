@@ -47,12 +47,10 @@ require_once 'includes/db-classes.inc.php';
 </head> -->
 <?php 
 createHead();
-displayNav() ?>
+displayNav(true) ?>
 <body>
     <div class="container">
     </div>
-
-
 </body>
     <script src="index.js"></script>
 </html>

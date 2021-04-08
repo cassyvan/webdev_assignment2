@@ -12,23 +12,26 @@ function createHead(){
 echo "</head>";
 }
 
-function displayNav() {
-
-    $navList = ["about", "portfolio", "favorites", "profile", "login", "logout"];
+function displayNav($isHome) {
 
     echo "<nav class='nav'>";
     echo "<img src='images/mru_logo.jpg' class='logo'>";
     echo "<button class='hamburgerIcon'><i class='fa fa-bars'></i></button>";
     echo "<div id='navLinks'>";
-    echo "<a href='index.php'>Home</a>";
-    echo "<a href='list.php'>Companies</a>";
-
-    foreach($navList as $link){
-        echo "<a href='" . $link . ".php'>" . $link . "</a>";       
+    if (!$isHome) {
+        echo "<a href='index.php'>Home</a>";
     }
-
+    echo "<a href='about.php'>About</a>";
+    echo "<a href='list.php'>Companies</a>";
+    echo "<a href='portfolio.php'>Portfolio</a>";
+    echo "<a href='comingSoon.php'>Profile</a>";
+    echo "<a href='favorites.php'>Favorites</a>";
+    //this should be displayed differently depending on if the user is already logged in or not
+    echo "<a href='list.php'>Login/Logout</a>";
     echo "</div>";
     echo "</nav>";
+
+
 }
 
 
