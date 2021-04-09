@@ -45,7 +45,7 @@ class DatabaseHelper
 }
 class CompaniesDB
 {
-    private static $baseSQL = "SELECT * FROM Companies";
+    private static $baseSQL = "SELECT * FROM companies";
 
     public function __construct($connection)
     {
@@ -73,7 +73,7 @@ class CompaniesDB
 
 class HistoryDB
 {
-    private static $baseSQL = "SELECT * FROM History";
+    private static $baseSQL = "SELECT * FROM history";
 
     public function __construct($connection)
     {
@@ -91,7 +91,7 @@ class HistoryDB
 
 class PortfolioDB
 {
-    private static $baseSQL = "SELECT * FROM Porfolio";
+    private static $baseSQL = "SELECT * FROM porfolio";
 
     public function __construct($connection)
     {
@@ -109,7 +109,7 @@ class PortfolioDB
 
 class UsersDB
 {
-    private static $baseSQL = "SELECT * FROM Users";
+    private static $baseSQL = "SELECT * FROM users";
 
     public function __construct($connection)
     {

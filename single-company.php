@@ -11,6 +11,6 @@ echo "</div>";
 
 
 <script src="javascript/index.js"></script>
-<script src="javacript/single-company.js"></script>
+<script src="javascript/single-company.js"></script>
 
 </html>

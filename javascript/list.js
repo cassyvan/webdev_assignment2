@@ -2,11 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const companiesAPI = "api-companies.php";
     const companyList = document.querySelector(".companiesList");
-    fetch(companiesAPI)
-        .then(data => data.json())
-        .then(data => outputCompanyList(data))
-        .catch(err => console.log(err))
 
+    
+    fetchCompanies();
+
+    function fetchCompanies() {
+        fetch(companiesAPI)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                outputCompanyList(data);
+        })
+            .catch((error) => {
+                console.log(error);
+        });
+    }
+
+       
     function outputCompanyList(companies) {
         for (let c of companies) {
             let newItem = document.createElement("li");
