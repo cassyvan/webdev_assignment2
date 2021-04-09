@@ -23,7 +23,7 @@ echo "this is a single company page";
 ?>
 
 <body>
-    <h2> Company </h2>
+    <h1> Company </h1>
     <div class="singleCompany"></div>
     <div class="button"></div> 
 </body>

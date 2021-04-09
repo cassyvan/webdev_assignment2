@@ -35,20 +35,30 @@ document.addEventListener("DOMContentLoaded", function () {
             ["Website", company[0].website],
             ["Description", company[0].description]
         ];
+
+        let image = document.createElement("img");
+        image.src = `logos/${company[0].symbol}.svg`;
+        singleCompany.appendChild(image);
+        console.log(image);
+
         fields.forEach((f) => {
             let divi = document.createElement("div");
             singleCompany.appendChild(divi);
             divi.innerHTML = `${f[0]}: ${f[1]}`;
         })
+        let favButton = document.createElement("button")
+        let favLink = document.createElement("a");
+        favLink.href = "favorites.php";
+        favLink.appendChild(document.createTextNode("Add to Favorites"));
+        favButton.appendChild(favLink);
+        buttons.appendChild(favButton);
+    
+    
+        let historyButton = document.createElement("button");
+        let histLink = document.createElement("a");
+        histLink.href = `history.php?symbol=${company[0].symbol}`;
+        histLink.appendChild(document.createTextNode("Stock History Data"));
+        historyButton.appendChild(histLink);
+        buttons.appendChild(historyButton);
     }
-
-    const favButton = document.createElement("button");
-    favButton.appendChild(document.createTextNode("Add to Favorites"));
-    buttons.appendChild(favButton);
-
-    const historyButton = document.createElement("button");
-    historyButton.appendChild(document.createTextNode("Stock History Data"));
-    buttons.appendChild(historyButton);
-
-
 })

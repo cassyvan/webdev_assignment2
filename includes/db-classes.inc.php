@@ -73,7 +73,7 @@ class CompaniesDB
 
 class HistoryDB
 {
-    private static $baseSQL = "SELECT * FROM history";
+    private static $baseSQL;
 
     public function __construct($connection)
     {
@@ -83,8 +83,19 @@ class HistoryDB
     public function getAll()
     {
         $sql = self::$baseSQL;
-        $statement =
-            DatabaseHelper::runQuery($this->pdo, $sql, null);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+
+    public function getAllCompanySymbol($symbol)
+    {
+        $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
+        $sql .= " WHERE history.symbol=?";
+        $statement = DatabaseHelper::runQuery(
+            $this->pdo,
+            $sql,
+            array($symbol)
+        );
         return $statement->fetchAll();
     }
 }

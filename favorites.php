@@ -18,10 +18,15 @@ require_once 'includes/db-classes.inc.php';
 <?php
 displayNav(false);
 echo "this is the favorites page"; 
+session_start();
+echo session_id();
+echo $_session []="123", 44;
+echo $_session;
 ?>
 
 <body>
   <div class="container">
+    <h1> Favorites </h1>
   </div>
 </body>
 
