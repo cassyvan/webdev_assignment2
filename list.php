@@ -11,6 +11,7 @@ echo "<div class='companiesDisplay'>";
 echo "<ul class='companiesList'></ul>";
 echo "</div>";
 ?>
-<script src="index.js"></script>
+<script src="javascript/index.js"></script>
+<script src="javascript/list.js"></script>
 
 </html>
