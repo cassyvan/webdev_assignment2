@@ -58,7 +58,7 @@ echo "this is the history page";
           DBCONNSTRING,
           DBUSER, DBPASS
         ));
-        if (isset($_GET['symbol']) && $_GET['symbol'] > 0) {
+        if (isset($_GET['symbol'])) {
           $historyGateway = new HistoryDB($conn);
           $history = $historyGateway->getAllCompanySymbol($_GET['symbol']);
 
@@ -76,7 +76,6 @@ echo "this is the history page";
       } catch (Exception $e) {
         die($e->getMessage());
       }
-    echo $history[0];
     
 
 
