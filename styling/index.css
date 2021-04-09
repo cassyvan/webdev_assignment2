@@ -12,7 +12,7 @@
     overflow: hidden;
     position: relative;
 }
-
+/* The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp */
 .hamburgerIcon{
     background-color: #7aa0d6;
     padding: 2%;
@@ -42,4 +42,12 @@
 
 .container{
     background-color: #b0c7e8;
+}
+
+h2{
+    color: red;
+}
+
+li{
+    border: solid 1px black;
 }
