@@ -7,9 +7,7 @@ function getCompanySQL()
   return $sql;
 }
 
-function displayNav($isHome)
-{
-
+function displayNav($isHome) {
   echo "<nav class='nav'>";
   echo "<img src='images/mru_logo.jpg' class='logo'>";
   echo "<div class='hamburgerIcon'><div></div><div></div><div></div></i></div>";
@@ -23,7 +21,7 @@ function displayNav($isHome)
   echo "<a href='comingSoon.php'>Profile</a>";
   echo "<a href='favorites.php'>Favorites</a>";
   //this should be displayed differently depending on if the user is already logged in or not
-  echo "<a href='list.php'>Login/Logout</a>";
+  echo "<a href='login.php'>Login/Logout</a>";
   echo "</div>";
   echo "</nav>";
 }

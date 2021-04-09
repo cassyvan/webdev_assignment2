@@ -2,10 +2,8 @@
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
-
-displayNav(false);
-
 ?>
+
 <!DOCTYPE html>
 <html lang=en>
 
@@ -17,6 +15,10 @@ displayNav(false);
     <!-- The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
+
+<?php
+displayNav(false);
+?>
 
 <body>
     <h1>Companies</h1>
@@ -38,6 +40,7 @@ displayNav(false);
         <ul class="companiesList"></ul>
     </div>
 </body>
+
 <script src="javascript/index.js"></script>
 <script src="javascript/list.js"></script>
 
