@@ -23,9 +23,9 @@ displayNav(false);
 <body>
     <h1>Companies</h1>
     <div class="filter">
-    <label> Filter:</label>
-                    <input type="text" id="searchBox" placeholder="Search..">
-                    <input id="resetButton" type="reset" value="Reset"></input>
+        <label> Filter:</label>
+        <input type="text" id="searchBox" placeholder="Search..">
+        <input id="resetButton" type="reset" value="Reset"></input>
     </div>
     <div id='loader1' class='lds-ring'>
         <div></div>
@@ -34,9 +34,6 @@ displayNav(false);
         <div></div>
     </div>
     <div class='companiesDisplay'>
-        <!-- <div class='companiesLogoList'></div>
-        <div class='companiesSymbolsList'></div>
-        <div class='companiesNamesList'></div> -->
         <ul class="companiesList"></ul>
     </div>
 </body>
