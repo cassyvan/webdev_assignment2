@@ -1,51 +1,73 @@
-.logo {
-    max-height: 100px;
-    width: auto;
-}
 
-.nav{
-    border: 1px solid black;
-    padding: 5px;
-    background-color: #7aa0d6;
-    /* display: flex;
-    justify-content: space-between; */
-    overflow: hidden;
-    position: relative;
-}
-/* The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp */
-.hamburgerIcon{
-    background-color: #7aa0d6;
-    padding: 2%;
-    border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    margin-top: 8px;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
+/* CSS Loader source: https://loading.io/css/ */
 
-.hamburgerIcon div {
-    width: 40px;
-    height: 5px;
-    background-color: black;
-    margin: 8px 0;
-}
-
-#navLinks a{
+.lds-ring {
     display: inline-block;
-    justify-content: space-between;
-    padding: 10px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #cdd422;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #c2dde6 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  li{
+      list-style-type: none;
+      /* padding: 2%; */
+      border: solid 1px black;
+      text-align: center;
+  }
+
+.companiesList img {
+  max-width: 100px;
+  max-height: auto;
+  min-width: 100px;
+  min-height: auto;
 }
 
-.container{
-    background-color: #b0c7e8;
+.companiesList li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8%;
 }
 
-h2{
-    color: red;
+.companiesList li a {
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: bold;
+  color: yellowgreen;
 }
 
-li{
-    border: solid 1px black;
+.companiesList{
+  margin-right: 3%;
+}
+
+ul > li:nth-child(odd){
+  background-color: aliceblue;
 }
