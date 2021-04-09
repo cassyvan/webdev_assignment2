@@ -22,6 +22,12 @@ echo "</div>";
 echo "this is a single company page";
 ?>
 
+<body>
+    <h2> Company </h2>
+    <div class="singleCompany"></div>
+    <div class="button"></div> 
+</body>
+
 <script src="javascript/index.js"></script>
 <script src="javascript/single-company.js"></script>
 
