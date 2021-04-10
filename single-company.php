@@ -16,10 +16,6 @@ require_once 'includes/db-classes.inc.php';
 
 <?php
 displayNav(false);
-
-echo "<div class='singleCompanyContent'>";
-echo "</div>";
-echo "this is a single company page";
 ?>
 
 <body>

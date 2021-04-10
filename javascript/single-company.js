@@ -25,36 +25,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function outputSingleCompany(company) {
 
-        const fields = [
-            ["Symbol", company[0].symbol], 
-            ["Name", company[0].name], 
-            ["Sector", company[0].sector], 
-            ["Sub-Industry", company[0].subindustry], 
-            ["Address", company[0].address],
-            ["Exchange", company[0].exchange],
-            ["Website", company[0].website],
-            ["Description", company[0].description]
-        ];
+        displayImage(company);
+        displayContent(company);
+        displayButtons(company);
+    }
 
+    function displayImage(company) {
         let image = document.createElement("img");
         image.src = `logos/${company[0].symbol}.svg`;
         singleCompany.appendChild(image);
         console.log(image);
+    }
 
-        fields.forEach((f) => {
-            let divi = document.createElement("div");
-            singleCompany.appendChild(divi);
-            divi.innerHTML = `${f[0]}: ${f[1]}`;
+    function displayContent(company) {
+        let heading = document.createElement("h2");
+        heading.innerHTML = `${company[0].name} (${company[0].symbol})</br>`;
+        singleCompany.appendChild(heading);
+
+        let info = document.createElement("div");
+
+        const fields = [     
+            ["Sector", company[0].sector], 
+            ["Sub-Industry", company[0].subindustry], 
+            ["Address", company[0].address],
+            ["Exchange", company[0].exchange],
+            ["Description", company[0].description]
+        ];
+
+        fields.forEach((f) => {    
+            let subHeading = document.createElement("h3");
+            subHeading.innerHTML = `${f[0]}: </br>`;
+            let para = document.createElement("p");
+            para.innerHTML = `${f[1]} </br>`;
+            info.appendChild(subHeading);
+            info.appendChild(para);
         })
+        singleCompany.appendChild(info);
+
+        let website = document.createElement("a");
+        website.href = `${company[0].website}`;
+        website.appendChild(document.createTextNode(`${company[0].website}`));
+        console.log(website);
+        singleCompany.appendChild(website);
+    }
+    
+    function displayButtons(company) {
         let favButton = document.createElement("button")
+        favButton.setAttribute("class", "favButton")
         let favLink = document.createElement("a");
         favLink.href = "favorites.php";
         favLink.appendChild(document.createTextNode("Add to Favorites"));
         favButton.appendChild(favLink);
         buttons.appendChild(favButton);
     
-    
         let historyButton = document.createElement("button");
+        historyButton.setAttribute("class", "historyButton")
         let histLink = document.createElement("a");
         histLink.href = `history.php?symbol=${company[0].symbol}`;
         histLink.appendChild(document.createTextNode("Stock History Data"));
