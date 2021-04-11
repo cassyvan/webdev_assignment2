@@ -1,8 +1,7 @@
 <?php
-define('DBHOST', 'localhost');
+define('DBHOST', 'mysql');
 define('DBNAME', 'stocks');
 define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBCONNSTRING',"mysql:host=" . DBHOST . ";dbname=" . DBNAME .
-";charset=utf8mb4;");
-?>
+define('DBPASS', 'root');
+define('DBCONNSTRING', "mysql:host=" . DBHOST . ";dbname=" . DBNAME .
+    ";charset=utf8mb4;");

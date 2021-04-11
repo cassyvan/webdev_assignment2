@@ -91,6 +91,20 @@ class HistoryDB
     {
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
         $sql .= " WHERE history.symbol=?";
+        $sql .= " ORDER BY date";
+        $statement = DatabaseHelper::runQuery(
+            $this->pdo,
+            $sql,
+            array($symbol)
+        );
+        return $statement->fetchAll();
+    }
+
+    public function getSortedCompany($symbol, $sort)
+    {
+        $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
+        $sql .= " WHERE history.symbol=?";
+        $sql .= " ORDER BY " . $sort;
         $statement = DatabaseHelper::runQuery(
             $this->pdo,
             $sql,

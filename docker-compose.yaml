@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+        dockerfile: Dockerfile-dev
+        context: .
+    ports:
+    - 80:80
+    volumes:
+    - .:/var/www/html
+    depends_on:
+    - mysql
+  mysql:
+    image: docker.io/mariadb:10.3
+    volumes:
+    - db:/var/lib/mysql
+    - ./database/stocks-3rd.sql:/docker-entrypoint-initdb.d/stocks-3rd.sql # REPLACE file.sql with the name of the file you want to import.
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+    - 3320:3320
+
+volumes:
+  db:
