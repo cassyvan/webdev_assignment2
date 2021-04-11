@@ -10,82 +10,72 @@ require_once 'includes/db-classes.inc.php';
 <head>
   <title>Stock Browser</title>
   <meta charset=utf-8>
-  <link rel="stylesheet" href="styling/history.css">
+  <link rel="stylesheet" href="styling/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp -->
 </head>
 
-<?php
-displayNav(false);
-echo "this is the history page"; 
-?>
-
 <body>
-  <div class="container">
-    <h1> Monthly Data </h1>
-    <div class="stockData"> 
-      <div class="date">
-        <h2> Date </h2>
-      </div>
-      <div class="open">
-        <h2> Open </h2>
-        </div>
-      <div class="high">
-        <h2> High </h2>
-      </div>
-      <div class="low">
-        <h2> Low </h2>
-      </div>
-      <div class="Close">
-        <h2> Close </h2>
-      </div>
-      <div class="volume">
-        <h2> Volume </h2>
-      </div>
-    </div>
-
 
     <?php
-
-    // echo $_GET['symbol'];
-
-
-    $company = "api-companies.php?symbol=" . $_GET['symbol'] . "</br>";
-    echo $company;
+    displayNav(false);
       
-      try {
-        $conn = DatabaseHelper::createConnection(array(
-          DBCONNSTRING,
-          DBUSER, DBPASS
-        ));
-        if (isset($_GET['symbol'])) {
+    try {
+      $conn = DatabaseHelper::createConnection(array(
+        DBCONNSTRING,
+        DBUSER, DBPASS
+      ));
+      if (isset($_GET['symbol'])) {
+        if (isset($_GET['sort'])) {
+          $historyGateway = new HistoryDB($conn);
+          $history = $historyGateway->getSortedCompany($_GET['symbol'], $_GET['sort'] );
+        } else { 
           $historyGateway = new HistoryDB($conn);
           $history = $historyGateway->getAllCompanySymbol($_GET['symbol']);
-
-          // echo $history;
-
-          foreach ($history as $key => $value) {
-            foreach ($value as $data) {
-              echo $key . ": " . $data . "</br>";
-            }
-          }
-
-        } else {
-          $history = null;
         }
-      } catch (Exception $e) {
-        die($e->getMessage());
+      
+        displayTable($history);
+        
+      } else {
+        $history = null;
       }
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+
     
 
+    function displayTable($history) {
 
+      echo "<h1> Monthly Data </h1>";
+      echo "<table class=stockData><tr class='row'>";
 
+      $tableHeader = array("Date", "Open", "High", "Low", "Close", "Volume");
+      foreach ($tableHeader as $head) {
+        echo "<th><a href=history.php?symbol=" .$_GET['symbol'] . "&sort=" . $head . " class='tableheader'>" . $head . "</th>" ;
+      }
+      echo "</tr>";
+
+      foreach ($history as $key => $value) {
+        echo "<tr class='row'>";
+        foreach ($value as $data) {
+          
+          if ($data == $value["date"] || ($data == $value["volume"])) {
+            echo "<td>" . $data . "</td>";
+          } else {
+            $num = number_format((float)$data, 2);
+            echo "<td>" . $num . "</td>";
+          }
+        }
+        echo "</tr>";
+      }
+      echo "</table>";
+    }
+    
     ?>
 
 
   </div>
 </body>
-
-<!-- <script src="javascript/history.js"></script> -->
 
 </html>

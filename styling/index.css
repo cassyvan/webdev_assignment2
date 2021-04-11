@@ -180,7 +180,7 @@ ul > li:nth-child(odd){
 }
 
 h2 {
-  color: darkblue;
+  color: cornflowerblue;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 300%;
 }
@@ -204,6 +204,28 @@ h3 {
   text-decoration: none;
 }
 
-.favButton a, .historyButton a {
+.favButton a, .historyButton {
   text-decoration: none;
 }
+
+
+th, td {
+  padding: 20px;
+  font-size: 32px;
+}
+
+th a {
+  text-decoration: none;
+  color:seagreen;
+}
+ 
+.stockData {
+  border: 5px double black;
+  padding: 20px;
+  margin: 15px;
+}
+
+tr:nth-child(even) {
+  background: #a7b3d4;
+}
+
