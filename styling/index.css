@@ -12,6 +12,7 @@
     overflow: hidden;
     position: relative;
 }
+
 /* The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp */
 .hamburgerIcon{
     background-color: #7aa0d6;
@@ -36,6 +37,16 @@
     display: inline-block;
     justify-content: space-between;
     padding: 10px;
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+    color: darkblue; 
+}
+
+.filter {
+  margin: 0px;
+  padding: 10px;
 }
 
 body {
@@ -204,10 +215,9 @@ h3 {
   text-decoration: none;
 }
 
-.favButton a, .historyButton {
+.favButton a, .historyButton a {
   text-decoration: none;
 }
-
 
 th, td {
   padding: 20px;

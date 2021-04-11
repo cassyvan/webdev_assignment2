@@ -43,8 +43,6 @@ require_once 'includes/db-classes.inc.php';
       die($e->getMessage());
     }
 
-    
-
     function displayTable($history) {
 
       echo "<h1> Monthly Data </h1>";
@@ -60,11 +58,14 @@ require_once 'includes/db-classes.inc.php';
         echo "<tr class='row'>";
         foreach ($value as $data) {
           
-          if ($data == $value["date"] || ($data == $value["volume"])) {
+          if ($data == $value["date"]) {
             echo "<td>" . $data . "</td>";
+          } else if ($data == $value["volume"]) {
+            $vol = number_format($data);
+            echo "<td>" . $vol . "</td>";
           } else {
             $num = number_format((float)$data, 2);
-            echo "<td>" . $num . "</td>";
+            echo "<td>$" . $num . "</td>";
           }
         }
         echo "</tr>";
