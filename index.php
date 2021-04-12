@@ -40,6 +40,5 @@ displayNav(true);
    ?>
   </div>
 </body>
-
 <script src="javascript/index.js"></script>
 </html>

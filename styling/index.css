@@ -6,7 +6,7 @@
 .nav{
     border: 1px solid black;
     padding: 5px;
-    background-color: #7aa0d6;
+    background-color: #293241;
     /* display: flex;
     justify-content: space-between; */
     overflow: hidden;
@@ -15,7 +15,7 @@
 
 /* The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp */
 .hamburgerIcon{
-    background-color: #7aa0d6;
+    background-color: #EE6C4D;
     padding: 2%;
     border: 1px solid black;
     width: 40px;
@@ -59,7 +59,7 @@
 }
 
 body {
-    background-color: #b0c7e8;
+    background-color: #3D5A80;
 }
 
 #resetButton, button {
@@ -273,21 +273,24 @@ a:hover{
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
     ". ."
     ". ."
     ". .";
-  
+  grid-auto-rows: 400px;
 }
 
 .homeButton {
-  background-color: grey;
+  background-color: #293241;
   color: white;
-  border: 5px solid lightblue;
+  border: 10px solid #E0FBFC;
   text-align: center;
   margin: 5px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 html{
   height: 100%;
@@ -295,8 +298,16 @@ html{
 }
 body {
   min-height: 100%;
+  background-color: #3D5A80;
 }
 .stockBrowser{
   text-align: center;
   color: black;
+}
+p{
+  font-size: 45px;
+  color: #E0FBFC;
+}
+.stockBrowser {
+  color: #E0FBFC;
 }
