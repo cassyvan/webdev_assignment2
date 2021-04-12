@@ -21,18 +21,14 @@ displayNav(false);
 try {
   
   $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
-  //session_start();
+  session_start();
 
-  if(isset($_GET["id"])){
+  if(isset($_GET['id'])){
     $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
     $userId = $userGateway->getAll();
-    foreach($userId as $u) {
-      echo $u;
-    }
-    
-    $id = $portfolioGateway->getPortfolio($_GET["id"]);
-    displayPortfolio($id);
+    $id = $portfolioGateway->getPortfolio($_GET['id']);
+    //displayPortfolio($id);
   } else {
     $userId = null;
     echo "NULL";
@@ -53,20 +49,20 @@ function displayPortfolio($user) {
   echo "</tr>";
 
   //loop through data and populate table
-  foreach ($user as $key => $value) {
-    echo "<tr class='row'>";
+//   foreach ($user as $key => $value) {
+//     echo "<tr class='row'>";
  
-    foreach ($value as $data)
-    echo "<td>" . $data . "</td>";
-    echo "</tr>";
-  }
-  echo "</table>";
+//     foreach ($value as $data)
+//     echo "<td>" . $data . "</td>";
+//     echo "</tr>";
+//   }
+//   echo "</table>";
 }
 ?>
 
 <body>
   <div class="container">
-    <!-- <?php displayPortfolio(); ?> -->
+    <!-- <?php displayPortfolio($id) ?> -->
   </div>
 </body>
 
