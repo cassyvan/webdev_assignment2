@@ -70,13 +70,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     function displayButtons(company) {
-        let favButton = document.createElement("button")
-        favButton.setAttribute("class", "favButton")
+        // const favButton = document.createElement('button')
+        // favButton.setAttribute('value', company[0].symbol)
+        // favButton.setAttribute('type', 'submit')
+
+        // favButtonDiv.appendChild(favButton)
+
+        // const favButton = document.getElementsById('favButton')
+        // let form = document.createElement("form")
+        // form.setAttribute("method", "post");
+        // form.setAttribute("action", "favorites.php");
+        // let favButton = document.createElement("input")
+        // favButton.setAttribute("class", "favButton")
+        // favButton.setAttribute("name", "company")
+        // // let favLink = document.createElement("a");
+        // // favLink.href = "favorites.php?company=" + company[0].symbol;
+        // // favLink.appendChild(document.createTextNode("Add to Favorites"));
+        // favButton.setAttribute("type", "submit");
+        // favButton.setAttribute("value", company[0].symbol);
+        // // favButton.appendChild(favLink);
+        // // favButton.appendChild(document.createTextNode("Add to favs"))
+        // form.appendChild(favButton);
+        // favButtonDiv.appendChild(form);
+        // favButton.addEventListener("click", () => addToFavorites(company[0]))
+    
+        let favoriteButton = document.createElement("button");
+        favoriteButton.setAttribute("class", "favButton")
         let favLink = document.createElement("a");
-        favLink.href = "favorites.php";
+        favLink.href = `favorites.php?company=${company[0].symbol}`;
         favLink.appendChild(document.createTextNode("Add to Favorites"));
-        favButton.appendChild(favLink);
-        buttons.appendChild(favButton);
+        favoriteButton.appendChild(favLink);
+        buttons.appendChild(favoriteButton);
     
         let historyButton = document.createElement("button");
         historyButton.setAttribute("class", "historyButton")
