@@ -24,9 +24,9 @@ try {
   session_start();
 
   if(isset($_GET["id"])){
-    $userGateway = new UsersDB($conn);
+    // $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
-    $userId = $userGateway->getAll();
+    // $userId = $userGateway->getAll();
     $id = $portfolioGateway->getPortfolio($_GET["id"]);
     displayPortfolio($id);
   } else {
