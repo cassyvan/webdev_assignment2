@@ -28,7 +28,7 @@ try {
     $portfolioGateway = new PortfolioDB($conn);
     // $userId = $userGateway->getAll();
     $id = $portfolioGateway->getPortfolio($_GET["id"]);
-    displayPortfolio($id);
+    displayPortfolioOfUser($id);
   } else {
     $userId = null;
     echo "NULL";
@@ -37,14 +37,13 @@ try {
   die($e->getMessage());
 }
 
-function displayPortfolio($user) {
+function displayPortfolioOfUser($user) {
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
   foreach($tableHeader as $head) {
     echo "<th>" . $head . "</th>" ;
-
   }
   echo "</tr>";
 
