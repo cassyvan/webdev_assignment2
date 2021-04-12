@@ -34,14 +34,23 @@
 }
 
 #navLinks a{
-    display: inline-block;
-    justify-content: space-between;
-    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 24px;
     text-decoration: none;
     border: 1px solid;
     border-radius: 10px;
     margin: 10px;
     color: darkblue; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    background-color: white;
+    font-weight: bold;
+}
+
+#navLinks a:hover{
+  background-color: #a7b3d4;
+  color: darkgreen;
 }
 
 .filter {
@@ -63,7 +72,7 @@ body {
 
 h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 48px;
+    font-size: 60px;
     color: darkblue;
     margin: 20px;
 }
@@ -237,5 +246,28 @@ th a {
 
 tr:nth-child(even) {
   background: #a7b3d4;
+}
+
+.comingSoon{
+  font-size: 48px;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 60px;
+}
+
+p{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 32px;
+}
+a{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 32px;
+  text-decoration: none;
+  color: cadetblue;
+}
+a:hover{
+  color: darkslategray;
 }
 
