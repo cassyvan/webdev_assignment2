@@ -25,41 +25,49 @@ displayNav(false);
   <div class="container">
     <h1> Favorites </h1>
     <div class="favorites">
-      <?php 
-      try {
-        $conn = DatabaseHelper::createConnection(array(
-          DBCONNSTRING,
-          DBUSER, DBPASS
-        ));
-        if (isset($_GET['company'])) {
+      <ul>
+        <?php
+        try {
+          $conn = DatabaseHelper::createConnection(array(
+            DBCONNSTRING,
+            DBUSER, DBPASS
+          ));
+          if (isset($_POST['all'])) {
+            session_destroy();
+          }
+          session_start();
+          if (isset($_SESSION['favorites'])) {
+            echo "<form method='post' action='favorites.php?destroy='>";
+            echo "<button class='button' type='submit' value='all'>Remove All</button>";
+          }
+          if (!isset($_SESSION['favorites'])) {
+            $_SESSION['favorites'] = [];
+            echo "You have no favorites set";
+          }
+          $fav = $_SESSION["favorites"];
+          if (isset($_GET['company'])) {
             $companyGateway = new CompaniesDB($conn);
             $company = $companyGateway->getSingleCompany($_GET['company']);
-            session_start();
-            if(!isset($_SESSION['favorites'])){
-              //check to see if we have a favorites array already, if not, we initiate it
-              $_SESSION["favorites"] = [];
+            $company = $company[0];
+            if (!in_array($company, $_SESSION['favorites'])) {
+              $fav[] = $company;
             }
-            //retrieve any existing favorites
-            $fav = $_SESSION["favorites"];
-            //pass product id to the array
-            $fav = $company[0]['name'];
-            // //resume modified array back to the session state
-            $_SESSION["favorites"] = $fav;
-            
-            // foreach($fav as $f){
-            //   echo $f;
-            // }
-            echo $_SESSION["favorites"];
-        
-        } else {
-          $company = null;
+          }
+          $_SESSION["favorites"] = $fav;
+          foreach ($fav as $f => $value) {
+            echo "<li>";
+            echo "<img src='logos/" . $value['symbol'] . ".svg'>";
+            echo $value['symbol'] . " ";
+            echo $value['name'];
+            echo "<form method='post' action='favorites.php?'>";
+            echo "<button class='button' type='submit' value= '" . $value['symbol'] . "'>Remove</button>";
+            echo "</li>";
+          }
+        } catch (Exception $e) {
+          die($e->getMessage());
         }
-      } catch (Exception $e) {
-        die($e->getMessage());
-      }
-
-
-?>
+        ?>
+      </ul>
     </div>
   </div>
 </body>

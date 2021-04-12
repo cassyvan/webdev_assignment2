@@ -24,36 +24,46 @@ try {
   session_start();
 
   if(isset($_GET["id"])){
-    // $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
-    // $userId = $userGateway->getAll();
     $id = $portfolioGateway->getPortfolio($_GET["id"]);
-    displayPortfolio($id);
+    getPortfolio($id);
   } else {
     $userId = null;
-    echo "NULL";
   } 
 } catch (Exception $e) {
   die($e->getMessage());
 }
 
+<<<<<<< HEAD
 function getPortfolio($user) {
+=======
+function getPortfolio($id) {
+>>>>>>> d80e6ce833b0b2d8c7e1d372f416d9ed16080ea5
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
   foreach($tableHeader as $head) {
     echo "<th>" . $head . "</th>" ;
-
   }
   echo "</tr>";
 
   //loop through data and populate table
-  foreach ($user as $key => $value) {
+  foreach ($id as $key => $value) {
     echo "<tr class='row'>";
- 
-    foreach ($value as $data)
-    echo "<td>" . $data . "</td>";
+    foreach ($value as $data) {
+      if ($data == $value["symbol"]) {
+        echo "<td>" . $data . "</td>";
+      } else if ($data == $value["name"]) {
+        echo "<td>" . $data . "</td>";
+      } else if ($data == $value["amount"]) {
+        echo "<td>" . $data . "</td>";
+      } else if ($data == $value["close"]) {
+        echo "<td>" . $data . "</td>";
+      } else {
+        echo "<td>" . $data . "</td>";
+      } 
+    }
     echo "</tr>";
   }
   echo "</table>";
@@ -62,7 +72,7 @@ function getPortfolio($user) {
 
 <body>
   <div class="container">
-    <!-- <?php displayPortfolio(); ?> -->
+    <!-- <?php getPortfolio($userId) ?> -->
   </div>
 </body>
 

@@ -105,6 +105,7 @@ class HistoryDB
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
         $sql .= " WHERE history.symbol=?";
         $sql .= " ORDER BY " . $sort;
+        echo $sql;
         $statement = DatabaseHelper::runQuery(
             $this->pdo,
             $sql,
@@ -126,26 +127,24 @@ class PortfolioDB
     public function getAll()
     {
         $sql = self::$baseSQL;
-        $statement =
-            DatabaseHelper::runQuery($this->pdo, $sql, null);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
 
     public function getPortfolio($userId)
     {
-        // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
-        // FROM portfolio 
-        // JOIN companies ON portfolio.symbol = companies.symbol
-        // JOIN (  SELECT symbol, history.close
-        //         FROM history 
-        //         GROUP BY symbol
-        //         HAVING MAX(date)
-        //      ) as h
-        // WHERE portfolio.symbol = h.symbol
-        // ORDER BY portfolio.symbol";
-        $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
-                FROM companies
-                JOIN portfolio ON portfolio.symbol = companies.symbol";
+        $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, ROUND(h.close, 2), ROUND(portfolio.amount*h.close, 2)
+        FROM portfolio 
+        JOIN companies ON portfolio.symbol = companies.symbol
+        JOIN (  SELECT symbol, history.close
+                FROM history 
+                GROUP BY symbol
+                HAVING MAX(date)
+             ) as h
+        WHERE portfolio.symbol = h.symbol
+        AND portfolio.userId=? 
+        ORDER BY portfolio.symbol";
+
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($userId));
         return $statement->fetchAll();
     }
@@ -168,7 +167,6 @@ class UsersDB
         return $statement->fetchAll();
     }
 
-
     public function getUser($email, $password)
     {
         $sql = self::$baseSQL;
@@ -178,7 +176,6 @@ class UsersDB
             $sql,
             array($email)
         );
-
 
         $row = $statement->fetch(PDO::FETCH_OBJ);
 
@@ -197,23 +194,4 @@ class UsersDB
             return false;
         }
     }
-
-
-    // public function getPortfolio($userId) {
-    //     // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
-    //     // FROM portfolio 
-    //     // JOIN companies ON portfolio.symbol = companies.symbol
-    //     // JOIN (  SELECT symbol, history.close
-    //     //         FROM history 
-    //     //         GROUP BY symbol
-    //     //         HAVING MAX(date)
-    //     //      ) as h
-    //     // WHERE portfolio.symbol = h.symbol
-    //     // ORDER BY portfolio.symbol";
-    //     $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
-    //             FROM companies
-    //             JOIN portfolio ON portfolio.symbol = companies.symbol";
-    //     $statement = DatabaseHelper::runQuery($this->pdo, $sql,array($userId));
-    //     return $statement->fetchAll();
-    // }
 }
