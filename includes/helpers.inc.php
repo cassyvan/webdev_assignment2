@@ -9,7 +9,7 @@ function getCompanySQL()
 
 function displayNav($isHome) {
   echo "<nav class='nav'>";
-  echo "<img src='images/mru_logo.jpg' class='logo'>";
+  echo "<img src='images/logo.png' class='logo'>";
   echo "<div class='hamburgerIcon'><div></div><div></div><div></div></i></div>";
   echo "<div id='navLinks'>";
   if (!$isHome) {

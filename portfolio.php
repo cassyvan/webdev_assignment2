@@ -34,11 +34,7 @@ try {
   die($e->getMessage());
 }
 
-<<<<<<< HEAD
 function getPortfolio($user) {
-=======
-function getPortfolio($id) {
->>>>>>> d80e6ce833b0b2d8c7e1d372f416d9ed16080ea5
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
