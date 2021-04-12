@@ -141,6 +141,7 @@ class PortfolioDB
                 HAVING MAX(date)
              ) as h
         WHERE portfolio.symbol = h.symbol
+        AND userId = $userId
         ORDER BY portfolio.symbol";
         // $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
         //         FROM companies
