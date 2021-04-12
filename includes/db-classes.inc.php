@@ -133,7 +133,7 @@ class PortfolioDB
 
     public function getPortfolio($userId)
     {
-        $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close, portfolio.amount*h.close
+        $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, ROUND(h.close, 2), ROUND(portfolio.amount*h.close, 2)
         FROM portfolio 
         JOIN companies ON portfolio.symbol = companies.symbol
         JOIN (  SELECT symbol, history.close
@@ -167,7 +167,6 @@ class UsersDB
         return $statement->fetchAll();
     }
 
-
     public function getUser($email, $password)
     {
         $sql = self::$baseSQL;
@@ -177,7 +176,6 @@ class UsersDB
             $sql,
             array($email)
         );
-
 
         $row = $statement->fetch(PDO::FETCH_OBJ);
 
