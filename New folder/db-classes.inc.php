@@ -105,7 +105,6 @@ class HistoryDB
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
         $sql .= " WHERE history.symbol=?";
         $sql .= " ORDER BY " . $sort;
-        echo $sql;
         $statement = DatabaseHelper::runQuery(
             $this->pdo,
             $sql,
@@ -117,7 +116,7 @@ class HistoryDB
 
 class PortfolioDB
 {
-    private static $baseSQL;
+    private static $baseSQL = "SELECT * FROM porfolio";
 
     public function __construct($connection)
     {
@@ -127,25 +126,8 @@ class PortfolioDB
     public function getAll()
     {
         $sql = self::$baseSQL;
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
-        return $statement->fetchAll();
-    }
-
-    public function getPortfolio($userId)
-    {
-        $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, ROUND(h.close, 2), ROUND(portfolio.amount*h.close, 2)
-        FROM portfolio 
-        JOIN companies ON portfolio.symbol = companies.symbol
-        JOIN (  SELECT symbol, history.close
-                FROM history 
-                GROUP BY symbol
-                HAVING MAX(date)
-             ) as h
-        WHERE portfolio.symbol = h.symbol
-        AND portfolio.userId=? 
-        ORDER BY portfolio.symbol";
-
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($userId));
+        $statement =
+            DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
 }
@@ -165,33 +147,5 @@ class UsersDB
         $statement =
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
-    }
-
-    public function getUser($email, $password)
-    {
-        $sql = self::$baseSQL;
-        $sql .= " WHERE email=?";
-        $statement = DatabaseHelper::runQuery(
-            $this->pdo,
-            $sql,
-            array($email)
-        );
-
-        $row = $statement->fetch(PDO::FETCH_OBJ);
-
-        if ($row) {
-
-            print_r($row);
-
-            $hashedPassword = $row->password;
-
-            if (password_verify($password, $hashedPassword)) {
-                return $row;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
     }
 }

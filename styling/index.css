@@ -270,4 +270,33 @@ a{
 a:hover{
   color: darkslategray;
 }
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". ."
+    ". ."
+    ". .";
+  
+}
 
+.homeButton {
+  background-color: grey;
+  color: white;
+  border: 5px solid lightblue;
+  text-align: center;
+  margin: 5px;
+}
+html{
+  height: 100%;
+  
+}
+body {
+  min-height: 100%;
+}
+.stockBrowser{
+  text-align: center;
+  color: black;
+}
