@@ -116,7 +116,7 @@ class HistoryDB
 
 class PortfolioDB
 {
-    private static $baseSQL = "SELECT * FROM porfolio";
+    private static $baseSQL;
 
     public function __construct($connection)
     {
@@ -130,6 +130,25 @@ class PortfolioDB
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+
+    public function getPortfolio($userId) {
+        // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
+        // FROM portfolio 
+        // JOIN companies ON portfolio.symbol = companies.symbol
+        // JOIN (  SELECT symbol, history.close
+        //         FROM history 
+        //         GROUP BY symbol
+        //         HAVING MAX(date)
+        //      ) as h
+        // WHERE portfolio.symbol = h.symbol
+        // ORDER BY portfolio.symbol";
+        $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
+                FROM companies
+                JOIN portfolio ON portfolio.symbol = companies.symbol";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql,array($userId));
+        return $statement->fetchAll();
+    }
+    
 }
 
 class UsersDB
@@ -148,4 +167,22 @@ class UsersDB
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+
+    // public function getPortfolio($userId) {
+    //     // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
+    //     // FROM portfolio 
+    //     // JOIN companies ON portfolio.symbol = companies.symbol
+    //     // JOIN (  SELECT symbol, history.close
+    //     //         FROM history 
+    //     //         GROUP BY symbol
+    //     //         HAVING MAX(date)
+    //     //      ) as h
+    //     // WHERE portfolio.symbol = h.symbol
+    //     // ORDER BY portfolio.symbol";
+    //     $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
+    //             FROM companies
+    //             JOIN portfolio ON portfolio.symbol = companies.symbol";
+    //     $statement = DatabaseHelper::runQuery($this->pdo, $sql,array($userId));
+    //     return $statement->fetchAll();
+    // }
 }

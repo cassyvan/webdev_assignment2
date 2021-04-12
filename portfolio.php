@@ -17,11 +17,49 @@ require_once 'includes/db-classes.inc.php';
 
 <?php
 displayNav(false);
-echo "this is the portfolio page"; 
+
+try {
+  $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
+  session_start();
+  
+  if(isset($_SESSION["id"])){
+    $userGateway = new UsersDB($conn);
+    $portfolioGateway = new PortfolioDB($conn);
+    $userId = $userGateway->getAll();
+    $id = $portfolioGateway->getPortfolio($userId);
+    echo "ID";
+    getPortfolio($id);
+  } else {
+    $userId = null;
+    echo "NULL";
+  } 
+} catch (Exception $e) {
+  die($e->getMessage());
+}
+
+function displayPortfolio($user) {
+  echo "<h1> Portfolio </h1>";
+  //create table and caption row
+  echo "<table class=portfolio><tr class='row'>";
+  $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
+  foreach($tableHeader as $head) {
+    echo "<th class='tableheader'>" . $head . "</th>" ;
+  }
+  echo "</tr>";
+
+  //loop through data and populate table
+  foreach ($user as $data) {
+    echo "<tr class='row'>";
+    echo $data;
+    echo "</tr>";
+  }
+  echo "</table>";
+}
 ?>
 
 <body>
   <div class="container">
+    <!-- <?php displayPortfolio(); ?> -->
   </div>
 </body>
 

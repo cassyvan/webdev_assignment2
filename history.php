@@ -76,7 +76,7 @@ require_once 'includes/db-classes.inc.php';
     ?>
 
 
-  </div>
+  <!-- </div> -->
 </body>
 
 </html>
