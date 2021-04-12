@@ -300,25 +300,3 @@ body {
   text-align: center;
   color: black;
 }
-
-.homeButton {
-  overflow: hidden;
-}
-.homeButton::before {
-  right: auto;
-  bottom: auto;
-  width: 120%;
-  height: 100%;
-  transform-origin: right top;
-  transform: skewX(-30deg) scale(0, 1);
-}
-.homeButton:hover::before {
-  transform-origin: left top;
-  transform: skewX(-30deg) scale(1, 1);
-}
-
-.demo {
-  padding: 2em 0;
-  text-align: center;
-  box-sizing: border-box;
-}

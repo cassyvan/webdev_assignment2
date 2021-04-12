@@ -131,6 +131,7 @@ class PortfolioDB
         return $statement->fetchAll();
     }
 
+<<<<<<< HEAD
     public function getPortfolio($userId)
     {
         // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
@@ -147,6 +148,24 @@ class PortfolioDB
                 FROM companies
                 JOIN portfolio ON portfolio.symbol = companies.symbol";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($userId));
+=======
+    public function getPortfolio($userId) {
+        $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close, portfolio.amount*h.close
+        FROM portfolio 
+        JOIN companies ON portfolio.symbol = companies.symbol
+        JOIN (  SELECT symbol, history.close
+                FROM history 
+                GROUP BY symbol
+                HAVING MAX(date)
+             ) as h
+        WHERE portfolio.symbol = h.symbol
+        AND userId =  $userId  
+        ORDER BY portfolio.symbol";
+        // $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
+        //         FROM companies
+        //         JOIN portfolio ON portfolio.symbol = companies.symbol";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql,array($userId));
+>>>>>>> 9774764886363e5e4b4ed796d4aa060175dbafde
         return $statement->fetchAll();
     }
 }
