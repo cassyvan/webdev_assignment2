@@ -1,7 +1,9 @@
 <?php
+session_start();
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
+  
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +19,27 @@ require_once 'includes/db-classes.inc.php';
 
 <?php
 displayNav(true);
-echo "this is the main page"; 
 ?>
 
 <body>
+  <h2 class="stockBrowser">Stock Browser</h2>
   <div class="container">
+    <?php displayAbout();
+    displayCompanies();
+    if (isset($_SESSION["loggedin"])){
+      displayPortfolio();
+      displayFavs();
+      displayProfile();
+      displayLogout();
+    } else {
+      displayLogin();
+      displaySignup();
+    }
+    
+   
+   ?>
   </div>
 </body>
 
 <script src="javascript/index.js"></script>
-
 </html>

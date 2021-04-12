@@ -25,3 +25,28 @@ function displayNav($isHome) {
   echo "</div>";
   echo "</nav>";
 }
+
+function displayAbout(){
+  echo "<a href='about.php'><div class='homeButton'><p>About</p></div></a>";
+}
+function displayCompanies(){
+  echo "<a href='list.php'><div class='homeButton'><p>Companies</p></div></a>";
+}
+function displayLogin(){
+  echo "<a href='login.php'><div class='homeButton'><p>Log In</p></div></a>";
+}
+function displaySignup(){
+  echo "<a href='comingSoon.php'><div class='homeButton'><p>Sign Up</p></div></a>";
+}
+function displayPortfolio(){
+  echo "<a href='portfolio.php'><div class='homeButton'><p>Portfolio</p></div></a>";
+}
+function displayFavs(){
+  echo "<a href='portfolio.php'><div class='homeButton'><p>Favourites</p></div></a>";
+}
+function displayProfile(){
+  echo "<a href='profile.php'><div class='homeButton'><p>Profile</p></div></a>";
+}
+function displayLogout(){
+  echo "<a href='logout.php'><div class='homeButton'><p>Logout</p></div></a>";
+}

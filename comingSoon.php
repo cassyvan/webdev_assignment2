@@ -10,14 +10,14 @@ require_once 'includes/db-classes.inc.php';
 <head>
   <title>Stock Browser</title>
   <meta charset=utf-8>
-  <link rel="stylesheet" href="styling/comingSoon.css">
+  <link rel="stylesheet" href="styling/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp -->
 </head>
 
 <?php
 displayNav(false);
-echo "this is the coming soon page"; 
+echo "<p class='comingSoon'> COMING SOON! </p>";
 ?>
 
 <body>
