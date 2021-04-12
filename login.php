@@ -65,20 +65,6 @@ displayNav(false);
 <body>
     <div class="container">
         <h2>Sign In</h2>
-        <!-- <p>Please fill in your credentials to login.</p>
-        <form method="post">
-            <div class="form-group">
-                <label for="">Email</label>
-                <input type="text" name="email" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="">Password</label>
-                <input type="password" name="password" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" name="btnLogin" class="btn btn-primary" value="Login" />
-            </div>
-        </form> -->
     </div>
     <?php
     if (!empty($login_err)) {
