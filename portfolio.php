@@ -21,12 +21,16 @@ displayNav(false);
 try {
   
   $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
-  session_start();
+  //session_start();
 
   if(isset($_GET["id"])){
     $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
     $userId = $userGateway->getAll();
+    foreach($userId as $u) {
+      echo $u;
+    }
+    
     $id = $portfolioGateway->getPortfolio($_GET["id"]);
     displayPortfolio($id);
   } else {
