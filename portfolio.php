@@ -19,16 +19,16 @@ require_once 'includes/db-classes.inc.php';
 displayNav(false);
 
 try {
+  
   $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
   session_start();
-  
-  if(isset($_SESSION["id"])){
+
+  if(isset($_GET["id"])){
     $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
     $userId = $userGateway->getAll();
-    $id = $portfolioGateway->getPortfolio($userId);
-    echo "ID";
-    getPortfolio($id);
+    $id = $portfolioGateway->getPortfolio($_GET["id"]);
+    displayPortfolio($id);
   } else {
     $userId = null;
     echo "NULL";
@@ -43,14 +43,17 @@ function displayPortfolio($user) {
   echo "<table class=portfolio><tr class='row'>";
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
   foreach($tableHeader as $head) {
-    echo "<th class='tableheader'>" . $head . "</th>" ;
+    echo "<th>" . $head . "</th>" ;
+
   }
   echo "</tr>";
 
   //loop through data and populate table
-  foreach ($user as $data) {
+  foreach ($user as $key => $value) {
     echo "<tr class='row'>";
-    echo $data;
+ 
+    foreach ($value as $data)
+    echo "<td>" . $data . "</td>";
     echo "</tr>";
   }
   echo "</table>";
