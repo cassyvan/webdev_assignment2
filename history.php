@@ -28,7 +28,7 @@ require_once 'includes/db-classes.inc.php';
       if (isset($_GET['symbol'])) {
         if (isset($_GET['sort'])) {
           $historyGateway = new HistoryDB($conn);
-          $history = $historyGateway->getSortedCompany($_GET['symbol'], $_GET['sort'] );
+          $history = $historyGateway->getSortedCompany($_GET['symbol'], $_GET['sort']);
         } else { 
           $historyGateway = new HistoryDB($conn);
           $history = $historyGateway->getAllCompanySymbol($_GET['symbol']);

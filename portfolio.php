@@ -41,7 +41,6 @@ function getPortfolio($id) {
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
   foreach($tableHeader as $head) {
     echo "<th>" . $head . "</th>" ;
-
   }
   echo "</tr>";
 
