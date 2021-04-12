@@ -32,9 +32,12 @@ displayNav(false);
             DBCONNSTRING,
             DBUSER, DBPASS
           ));
+          if (isset($_POST['all'])) {
+            session_destroy();
+          }
           session_start();
           if (isset($_SESSION['favorites'])) {
-            echo "<form method='post' action='favorites.php?'>";
+            echo "<form method='post' action='favorites.php?destroy='>";
             echo "<button class='button' type='submit' value='all'>Remove All</button>";
           }
           if (!isset($_SESSION['favorites'])) {
