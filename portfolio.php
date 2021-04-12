@@ -23,12 +23,12 @@ try {
   $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
   session_start();
 
-  if(isset($_GET['id'])){
-    $userGateway = new UsersDB($conn);
+  if(isset($_GET["id"])){
+    // $userGateway = new UsersDB($conn);
     $portfolioGateway = new PortfolioDB($conn);
-    $userId = $userGateway->getAll();
-    $id = $portfolioGateway->getPortfolio($_GET['id']);
-    //displayPortfolio($id);
+    // $userId = $userGateway->getAll();
+    $id = $portfolioGateway->getPortfolio($_GET["id"]);
+    displayPortfolio($id);
   } else {
     $userId = null;
     echo "NULL";

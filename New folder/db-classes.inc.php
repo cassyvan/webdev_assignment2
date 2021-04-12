@@ -116,7 +116,7 @@ class HistoryDB
 
 class PortfolioDB
 {
-    private static $baseSQL;
+    private static $baseSQL = "SELECT * FROM porfolio";
 
     public function __construct($connection)
     {
@@ -128,25 +128,6 @@ class PortfolioDB
         $sql = self::$baseSQL;
         $statement =
             DatabaseHelper::runQuery($this->pdo, $sql, null);
-        return $statement->fetchAll();
-    }
-
-    public function getPortfolio($userId)
-    {
-        // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
-        // FROM portfolio 
-        // JOIN companies ON portfolio.symbol = companies.symbol
-        // JOIN (  SELECT symbol, history.close
-        //         FROM history 
-        //         GROUP BY symbol
-        //         HAVING MAX(date)
-        //      ) as h
-        // WHERE portfolio.symbol = h.symbol
-        // ORDER BY portfolio.symbol";
-        $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
-                FROM companies
-                JOIN portfolio ON portfolio.symbol = companies.symbol";
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($userId));
         return $statement->fetchAll();
     }
 }
@@ -167,53 +148,4 @@ class UsersDB
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
-
-
-    public function getUser($email, $password)
-    {
-        $sql = self::$baseSQL;
-        $sql .= " WHERE email=?";
-        $statement = DatabaseHelper::runQuery(
-            $this->pdo,
-            $sql,
-            array($email)
-        );
-
-
-        $row = $statement->fetch(PDO::FETCH_OBJ);
-
-        if ($row) {
-
-            print_r($row);
-
-            $hashedPassword = $row->password;
-
-            if (password_verify($password, $hashedPassword)) {
-                return $row;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-
-    // public function getPortfolio($userId) {
-    //     // $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close
-    //     // FROM portfolio 
-    //     // JOIN companies ON portfolio.symbol = companies.symbol
-    //     // JOIN (  SELECT symbol, history.close
-    //     //         FROM history 
-    //     //         GROUP BY symbol
-    //     //         HAVING MAX(date)
-    //     //      ) as h
-    //     // WHERE portfolio.symbol = h.symbol
-    //     // ORDER BY portfolio.symbol";
-    //     $sql = self::$baseSQL . "SELECT companies.name, portfolio.amount
-    //             FROM companies
-    //             JOIN portfolio ON portfolio.symbol = companies.symbol";
-    //     $statement = DatabaseHelper::runQuery($this->pdo, $sql,array($userId));
-    //     return $statement->fetchAll();
-    // }
 }
