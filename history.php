@@ -78,5 +78,5 @@ require_once 'includes/db-classes.inc.php';
 
   <!-- </div> -->
 </body>
-
+<script src="javascript/index.js"></script>
 </html>
