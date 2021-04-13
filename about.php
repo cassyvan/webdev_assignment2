@@ -23,7 +23,7 @@ echo "<p id='aboutDescription>
       Professor: Randy Connolly <br>
       Winter 2021 </p>
       <h3>Technologies Used</h3>
-      <p>list them here</p>
+      <p>Logo maker: https://www.freelogodesign.org</p>
       <h3> Group Members </h3>
       <p id='aboutDescription'>
       <a href='https://github.com/larte834'>Lidiya Artemenko</a><br>

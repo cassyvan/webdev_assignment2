@@ -42,7 +42,7 @@ try {
   die($e->getMessage());
 }
 
-function getPortfolio($id) {
+function getPortfolio($user) {
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
