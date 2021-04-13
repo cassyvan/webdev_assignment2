@@ -19,43 +19,39 @@ require_once 'includes/db-classes.inc.php';
 displayNav(false);
 
 try {
+  $conn = DatabaseHelper::createConnection(array(
+    DBCONNSTRING,
+    DBUSER, DBPASS
+  ));
   session_start();
-  $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
 
-  // $userGateway = new UsersDB($conn);
-  // $users = $userGateway->getID($_GET["user_id"]);
-
-  if(isset($_GET["id"])){
-    //if () {
-      $portfolioGateway = new PortfolioDB($conn);
-      $id = $portfolioGateway->getPortfolio($_GET["id"]);
-      getPortfolio($id);
-    //}
-    // else {
-    //   "No portfolio has been started"
-    // }
-    
+  if (isset($_GET["user_id"])) {
+    $portfolioGateway = new PortfolioDB($conn);
+    $id = $portfolioGateway->getPortfolio($_GET["user_id"]);
+    getPortfolio($id);
   } else {
     $id = null;
-  } 
+    echo "<p>Please log in/sign up to view your portfolio</p>";
+  }
 } catch (Exception $e) {
   die($e->getMessage());
 }
 
-function getPortfolio($id) {
+function getPortfolio($id)
+{
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
-  foreach($tableHeader as $head) {
-    echo "<th>" . $head . "</th>" ;
+  foreach ($tableHeader as $head) {
+    echo "<th>" . $head . "</th>";
   }
   echo "</tr>";
 
   //loop through data and populate table
   $total = 0;
   foreach ($id as $key => $value) {
-    
+
     echo "<tr class='row'>";
     foreach ($value as $data) {
 
@@ -70,7 +66,7 @@ function getPortfolio($id) {
       } else {
         echo "<td>" . round($data, 2) . "</td>";
         $total += $data;
-      } 
+      }
     }
     echo "</tr>";
   }
