@@ -27,9 +27,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
 displayNav(false, $check);
 
 echo "<h1 class='about'>About Us</h1>";
-echo "<p id='aboutDescription>
+echo "<p>
       This site is created for Mount Royal University's COMP 3512 (Web Development II) Assignment #2. <br>
-      Professor: Randy Connolly <br>
+      Professor: Randy Connolly </p>
       Winter 2021 </p>
       <h3>Technologies Used</h3>
       <p>Logo maker: https://www.freelogodesign.org</p>
