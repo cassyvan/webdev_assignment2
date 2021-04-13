@@ -53,6 +53,7 @@ displayNav(false, $check);
                 $companyGateway = new CompaniesDB($conn);
                 $company = $companyGateway->getSingleCompany($_GET['company']);
                 $company = $company[0];
+                header($url);
                 //checks to see if the company already exists in the session array
                 if (!in_array($company, $_SESSION['favorites'])) {
                   $fav[] = $company;
