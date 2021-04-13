@@ -24,9 +24,17 @@ try {
   session_start();
 
   if(isset($_GET["id"])){
-    $portfolioGateway = new PortfolioDB($conn);
-    $id = $portfolioGateway->getPortfolio($_GET["id"]);
-    getPortfolio($id);
+    //if () {
+      $portfolioGateway = new PortfolioDB($conn);
+      $userGateway = new UsersDB($conn);
+      //$user = $userGateway->getID(session_id());
+      $id = $portfolioGateway->getPortfolio($_GET['id']);
+      getPortfolio($id);
+    //}
+    // else {
+    //   "No portfolio has been started"
+    // }
+    
   } else {
     $userId = null;
   } 
@@ -45,30 +53,36 @@ function getPortfolio($id) {
   echo "</tr>";
 
   //loop through data and populate table
+  $total = 0;
   foreach ($id as $key => $value) {
+    
     echo "<tr class='row'>";
     foreach ($value as $data) {
+
       if ($data == $value["symbol"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td><img src='logos/$data.svg'/><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
       } else if ($data == $value["name"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td><a href='single-company.php?symbol=" . $value['symbol'] . "'>" . $data . "<a/></td>";
       } else if ($data == $value["amount"]) {
         echo "<td>" . $data . "</td>";
       } else if ($data == $value["close"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td>" . round($data, 2) . "</td>";
       } else {
-        echo "<td>" . $data . "</td>";
+        echo "<td>" . round($data, 2) . "</td>";
+        $total += $data;
       } 
     }
     echo "</tr>";
   }
   echo "</table>";
+  //calculate total portfolio value
+  echo "<p>Total Portfolio Value: $" . round($total, 2) . "</p>";
 }
 ?>
 
 <body>
   <div class="container">
-    <!-- <?php getPortfolio($userId) ?> -->
+
   </div>
 </body>
 
