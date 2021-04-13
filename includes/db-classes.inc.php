@@ -105,7 +105,6 @@ class HistoryDB
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
         $sql .= " WHERE history.symbol=?";
         $sql .= " ORDER BY " . $sort;
-        echo $sql;
         $statement = DatabaseHelper::runQuery(
             $this->pdo,
             $sql,
