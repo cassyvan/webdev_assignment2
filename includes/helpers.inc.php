@@ -47,7 +47,7 @@ function displayPortfolio(){
   echo "<a href='portfolio.php'><div class='homeButton'><p>Portfolio</p></div></a>";
 }
 function displayFavs(){
-  echo "<a href='portfolio.php'><div class='homeButton'><p>Favourites</p></div></a>";
+  echo "<a href='favorites.php'><div class='homeButton'><p>Favourites</p></div></a>";
 }
 function displayProfile(){
   echo "<a href='profile.php'><div class='homeButton'><p>Profile</p></div></a>";
