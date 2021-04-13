@@ -45,7 +45,7 @@ displayNav(false, $check);
               echo "<p>You have no favorites set</p>";
             } else {
               echo "<form method='post' action='favorites.php?destroy='>";
-              echo "<button class='button' type='submit' value='all'>Remove All</button>";
+              echo "<button class='button' id='remAllButton' type='submit' value='all'>Remove All</button>";
               echo "</form>";
               $fav = $_SESSION["favorites"];
               //if adding favorite from single-company.php, grab the query and add it to the session array
@@ -81,10 +81,10 @@ displayNav(false, $check);
               foreach ($fav as $f => $value) {
                 echo "<li id='fav'>";
                 echo "<img src='logos/" . $value['symbol'] . ".svg' id='favLogo'>";
-                echo "<div id='favNameSymbol'>" . $value['symbol'] . " ";
+                echo "<div id='favNameSymbol'>" . $value['symbol'] . ", ";
                 echo $value['name'] . "</div>";
                 echo "<form method='get' action='favorites.php?remove='>";
-                echo "<button class='button' type='submit' name='remove'" . " value='" . $value['symbol'] . "'>Remove</button>";
+                echo "<button class='button' id='remButton' type='submit' name='remove'" . " value='" . $value['symbol'] . "'>Remove</button>";
                 echo "</form>";
                 echo "</li>";
               }
