@@ -27,10 +27,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
 displayNav(false, $check);
 
 echo "<h1 class='about'>About Us</h1>";
-echo "<p>
-      This site is created for Mount Royal University's COMP 3512 (Web Development II) Assignment #2. <br>
-      Professor: Randy Connolly </p>
-      Winter 2021 </p>
+echo "<p>This site is created for Mount Royal University's COMP 3512 (Web Development II) Assignment #2. </p> </br>
+      <p>Professor: Randy Connolly </p></br>
+      <p>Winter 2021 </p></br>
       <h3>Technologies Used</h3>
       <p>Logo maker: https://www.freelogodesign.org</p>
       <p>Login form: https://codepen.io/colorlib/pen/rxddKy</p>
