@@ -17,22 +17,18 @@ require_once "includes/helpers.inc.php";
 $login_err="";
 
 try {
-    $conn = DatabaseHelper::createConnection(array(
-        DBCONNSTRING,
-        DBUSER, DBPASS
-    ));
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     if (isset($_POST['login'])) {
 
         $email=$_POST["email"];
         $password=$_POST["password"];
 
         $userObj = new UsersDB($conn);
-       
-
+        $row1 = $userObj->getUser($email, $password);
         if($userObj->getUser($email,$password)){
             
             $_SESSION["loggedin"]=true;
-            $_SESSION["user_id"]=$row->id;
+            $_SESSION["user_id"]=$row1->id;
             header("location: index.php");
             exit();
         }
@@ -54,25 +50,22 @@ try {
     <title>Login</title>
     <meta charset=utf-8>
     <link rel="stylesheet" href="styling/index.css">
+    <link rel="stylesheet" href="styling/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- The hamburger menu was found on https://www.w3schools.com/howto/howto_js_mobile_navbar.asp -->
 </head>
 
 <?php
-displayNav(false);
+$check = isset($_SESSION["loggedin"]);
+displayNav(false, $check);
 ?>
 
 <body>
-    <div class="container">
+    
         <h2>Sign In</h2>
     </div>
-    <?php
-    if (!empty($login_err)) {
-        echo '<div class="alert alert-danger">' . $login_err . '</div>';
-    }
-    ?>
 
-    <form action="" method="post">
+    <!-- <form action="" method="post" class="register-form">
         <div class="form-group">
             <label>Email</label>
             <input type="email" name="email" class="form-control">
@@ -88,9 +81,22 @@ displayNav(false);
         </div>
         <p>Don't have an account? <a href="comingSoon.php">Sign up now</a>.</p>
     </form>
+    </div> -->
+    <form class="form" method="post" action="">
+            <div id="errormessage">
+    <?php
+    if (!empty($login_err)) {
+        echo '<div class="alert alert-danger">' . $login_err . '</div>';
+    }
+    ?>
     </div>
-
-    </div>
+      <input type="text" name="email" placeholder="email"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button type="submit" name="login" value="Login">login</button>
+      <p class="message">Not registered? <a href="comingSoon.php">Create an account</a></p>
+    </form>
+  </div>
+    
 </body>
 
 <script src="javascript/index.js"></script>

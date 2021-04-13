@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
@@ -16,18 +17,19 @@ require_once 'includes/db-classes.inc.php';
 </head>
 
 <?php
-displayNav(false);
+$check = isset($_SESSION["loggedin"]);
+displayNav(false, $check);
 
 try {
   $conn = DatabaseHelper::createConnection(array(
     DBCONNSTRING,
     DBUSER, DBPASS
   ));
-  session_start();
+  
 
-  if (isset($_GET["user_id"]) && isset($_SESSION["loggedin"])) {
+  if (isset($_SESSION["user_id"])) {
     $portfolioGateway = new PortfolioDB($conn);
-    $id = $portfolioGateway->getPortfolio($_GET["user_id"]);
+    $id = $portfolioGateway->getPortfolio($_SESSION["user_id"]);
     getPortfolio($id);
   } else {
     $id = null;
@@ -56,7 +58,7 @@ function getPortfolio($id)
     foreach ($value as $data) {
 
       if ($data == $value["symbol"]) {
-        echo "<td><img src='logos/$data.svg'/><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
+        echo "<td><img src='logos/$data.svg' style='max-width: 25%'/><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
       } else if ($data == $value["name"]) {
         echo "<td><a href='single-company.php?symbol=" . $value['symbol'] . "'>" . $data . "<a/></td>";
       } else if ($data == $value["amount"]) {

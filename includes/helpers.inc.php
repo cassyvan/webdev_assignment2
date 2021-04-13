@@ -7,9 +7,9 @@ function getCompanySQL()
   return $sql;
 }
 
-function displayNav($isHome) {
+function displayNav($isHome, $check) {
   echo "<nav class='nav'>";
-  echo "<img src='images/logo.png' class='logo'>";
+  echo "<a href='index.php'><img src='images/logo.png' class='logo'></a>";
   echo "<div class='hamburgerIcon'><div></div><div></div><div></div></i></div>";
   echo "<div id='navLinks'>";
   if (!$isHome) {
@@ -17,11 +17,16 @@ function displayNav($isHome) {
   }
   echo "<a href='about.php'>About</a>";
   echo "<a href='list.php'>Companies</a>";
-  echo "<a href='portfolio.php'>Portfolio</a>";
-  echo "<a href='comingSoon.php'>Profile</a>";
-  echo "<a href='favorites.php'>Favorites</a>";
   //this should be displayed differently depending on if the user is already logged in or not
-  echo "<a href='login.php'>Login/Logout</a>";
+  if ($check){
+    echo "<a href='portfolio.php'>Portfolio</a>";
+    echo "<a href='comingSoon.php'>Profile</a>";
+    echo "<a href='favorites.php'>Favorites</a>";
+    echo "<a href='logout.php'>Logout</a>";
+  } else{
+    echo "<a href='login.php'>Login</a>";
+    echo "<a href='comingSoon.php'>Sign Up</a>";
+  }
   echo "</div>";
   echo "</nav>";
 }
