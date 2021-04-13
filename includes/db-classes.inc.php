@@ -194,4 +194,12 @@ class UsersDB
             return false;
         }
     }
+
+    public function getID($id) {
+        $sql = self::$baseSQL;
+        $sql .= " WHERE id=?";
+        $statement =
+            DatabaseHelper::runQuery($this->pdo, $sql, array($id));
+        return $statement->fetchAll();
+    }
 }

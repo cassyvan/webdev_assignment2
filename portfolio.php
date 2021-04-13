@@ -23,13 +23,12 @@ try {
   $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
 
   // $userGateway = new UsersDB($conn);
-  // $user = $userGateway->getID($_SESSION["user_id"]);
-  echo "hi";
-  if(isset($_SESSION["user_id"])){
+  // $users = $userGateway->getID($_GET["user_id"]);
+
+  if(isset($_GET["id"])){
     //if () {
       $portfolioGateway = new PortfolioDB($conn);
-      
-      $id = $portfolioGateway->getPortfolio($_SESSION["user_id"]);
+      $id = $portfolioGateway->getPortfolio($_GET["id"]);
       getPortfolio($id);
     //}
     // else {
