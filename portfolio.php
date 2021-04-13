@@ -19,16 +19,17 @@ require_once 'includes/db-classes.inc.php';
 displayNav(false);
 
 try {
-  
-  $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
   session_start();
+  $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
 
-  if(isset($_GET["id"])){
+  // $userGateway = new UsersDB($conn);
+  // $user = $userGateway->getID($_SESSION["user_id"]);
+  echo "hi";
+  if(isset($_SESSION["user_id"])){
     //if () {
       $portfolioGateway = new PortfolioDB($conn);
-      $userGateway = new UsersDB($conn);
-      //$user = $userGateway->getID(session_id());
-      $id = $portfolioGateway->getPortfolio($_GET['id']);
+      
+      $id = $portfolioGateway->getPortfolio($_SESSION["user_id"]);
       getPortfolio($id);
     //}
     // else {
@@ -36,13 +37,13 @@ try {
     // }
     
   } else {
-    $userId = null;
+    $id = null;
   } 
 } catch (Exception $e) {
   die($e->getMessage());
 }
 
-function getPortfolio($user) {
+function getPortfolio($id) {
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
