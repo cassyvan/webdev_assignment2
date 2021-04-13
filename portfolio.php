@@ -25,7 +25,7 @@ try {
   ));
   session_start();
 
-  if (isset($_GET["user_id"])) {
+  if (isset($_GET["user_id"]) && isset($_SESSION["loggedin"])) {
     $portfolioGateway = new PortfolioDB($conn);
     $id = $portfolioGateway->getPortfolio($_GET["user_id"]);
     getPortfolio($id);
