@@ -15,7 +15,8 @@ require_once 'includes/db-classes.inc.php';
 </head>
 
 <?php
-displayNav(false);
+$check = isset($_SESSION["loggedin"]);
+displayNav(false, $check);
 ?>
 
 <body>

@@ -181,8 +181,6 @@ class UsersDB
 
         if ($row) {
 
-            print_r($row);
-
             $hashedPassword = $row->password;
 
             if (password_verify($password, $hashedPassword)) {
