@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log(data);
                 outputSingleCompany(data);
-        })
+            })
             .catch((error) => {
                 console.log(error);
-        });
+            });
     }
 
     function outputSingleCompany(company) {
@@ -44,15 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let info = document.createElement("div");
 
-        const fields = [     
-            ["Sector", company[0].sector], 
-            ["Sub-Industry", company[0].subindustry], 
+        const fields = [
+            ["Sector", company[0].sector],
+            ["Sub-Industry", company[0].subindustry],
             ["Address", company[0].address],
             ["Exchange", company[0].exchange],
             ["Description", company[0].description]
         ];
 
-        fields.forEach((f) => {    
+        fields.forEach((f) => {
             let subHeading = document.createElement("h3");
             subHeading.innerHTML = `${f[0]}: </br>`;
             let para = document.createElement("p");
@@ -68,32 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(website);
         singleCompany.appendChild(website);
     }
-    
+
     function displayButtons(company) {
-        // const favButton = document.createElement('button')
-        // favButton.setAttribute('value', company[0].symbol)
-        // favButton.setAttribute('type', 'submit')
 
-        // favButtonDiv.appendChild(favButton)
-
-        // const favButton = document.getElementsById('favButton')
-        // let form = document.createElement("form")
-        // form.setAttribute("method", "post");
-        // form.setAttribute("action", "favorites.php");
-        // let favButton = document.createElement("input")
-        // favButton.setAttribute("class", "favButton")
-        // favButton.setAttribute("name", "company")
-        // // let favLink = document.createElement("a");
-        // // favLink.href = "favorites.php?company=" + company[0].symbol;
-        // // favLink.appendChild(document.createTextNode("Add to Favorites"));
-        // favButton.setAttribute("type", "submit");
-        // favButton.setAttribute("value", company[0].symbol);
-        // // favButton.appendChild(favLink);
-        // // favButton.appendChild(document.createTextNode("Add to favs"))
-        // form.appendChild(favButton);
-        // favButtonDiv.appendChild(form);
-        // favButton.addEventListener("click", () => addToFavorites(company[0]))
-    
         let favoriteButton = document.createElement("button");
         favoriteButton.setAttribute("class", "favButton")
         let favLink = document.createElement("a");
@@ -101,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         favLink.appendChild(document.createTextNode("Add to Favorites"));
         favoriteButton.appendChild(favLink);
         buttons.appendChild(favoriteButton);
-    
+
         let historyButton = document.createElement("button");
         historyButton.setAttribute("class", "historyButton")
         let histLink = document.createElement("a");
