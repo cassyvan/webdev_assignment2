@@ -166,10 +166,6 @@ ul > li:nth-child(odd){
 }
 
 #symbol{
-  /* padding-top: 2%;
-  padding-bottom: 2%;
-  margin-left: auto;
-  margin-right: auto; */
   margin: auto;
   color: seagreen;
 }
@@ -313,4 +309,36 @@ p{
 }
 .stockBrowser {
   color: #E0FBFC;
+}
+
+#fav{
+  display: flex;
+  font-size: 48px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* justify-content: space-around; */
+  margin: auto;
+}
+
+#favLogo{
+  max-width: 200px;
+  max-height: auto;
+  margin: auto;
+}
+
+#fav button{
+  /* margin: auto; */
+  padding: 10%;
+}
+
+#fav form {
+  margin: auto;
+}
+
+#favNameSymbol{
+  margin: auto;
+  color: #E0FBFC;
+}
+
+.favorites{
+  margin-right: 5%;
 }

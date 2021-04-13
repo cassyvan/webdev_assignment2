@@ -24,12 +24,11 @@ try {
         $password=$_POST["password"];
 
         $userObj = new UsersDB($conn);
-       
-
+        $row1 = $userObj->getUser($email, $password);
         if($userObj->getUser($email,$password)){
             
             $_SESSION["loggedin"]=true;
-            $_SESSION["user_id"]=$row->id;
+            $_SESSION["user_id"]=$row1->id;
             header("location: index.php");
             exit();
         }

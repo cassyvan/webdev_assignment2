@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
@@ -20,56 +21,66 @@ $check = isset($_SESSION["loggedin"]);
 displayNav(false, $check);
 
 try {
+  $conn = DatabaseHelper::createConnection(array(
+    DBCONNSTRING,
+    DBUSER, DBPASS
+  ));
   
-  $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
-  session_start();
 
-  if(isset($_GET["id"])){
+  if (isset($_SESSION["user_id"])) {
     $portfolioGateway = new PortfolioDB($conn);
-    $id = $portfolioGateway->getPortfolio($_GET["id"]);
+    $id = $portfolioGateway->getPortfolio($_SESSION["user_id"]);
     getPortfolio($id);
   } else {
-    $userId = null;
-  } 
+    $id = null;
+    echo "<p>Please log in/sign up to view your portfolio</p>";
+  }
 } catch (Exception $e) {
   die($e->getMessage());
 }
 
-function getPortfolio($user) {
+function getPortfolio($id)
+{
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
   $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
-  foreach($tableHeader as $head) {
-    echo "<th>" . $head . "</th>" ;
+  foreach ($tableHeader as $head) {
+    echo "<th>" . $head . "</th>";
   }
   echo "</tr>";
 
   //loop through data and populate table
+  $total = 0;
   foreach ($id as $key => $value) {
+
     echo "<tr class='row'>";
     foreach ($value as $data) {
+
       if ($data == $value["symbol"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td><img src='logos/$data.svg' style='max-width: 25%'/><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
       } else if ($data == $value["name"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td><a href='single-company.php?symbol=" . $value['symbol'] . "'>" . $data . "<a/></td>";
       } else if ($data == $value["amount"]) {
         echo "<td>" . $data . "</td>";
       } else if ($data == $value["close"]) {
-        echo "<td>" . $data . "</td>";
+        echo "<td>" . round($data, 2) . "</td>";
       } else {
-        echo "<td>" . $data . "</td>";
-      } 
+        echo "<td>" . round($data, 2) . "</td>";
+        $total += $data;
+      }
     }
     echo "</tr>";
   }
   echo "</table>";
+  //calculate total portfolio value
+  echo "<p>Total Portfolio Value: $" . round($total, 2) . "</p>";
 }
 ?>
 
 <body>
   <div class="container">
-    <!-- <?php getPortfolio($userId) ?> -->
+
   </div>
 </body>
 
