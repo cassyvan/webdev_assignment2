@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
@@ -16,8 +18,14 @@ require_once 'includes/db-classes.inc.php';
 </head>
 
 <?php
-$check = isset($_SESSION["loggedin"]);
+
+$check = false;
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+  $check = $_SESSION["loggedin"];
+} 
+
 displayNav(false, $check);
+
 echo "<h1 class='about'>About Us</h1>";
 echo "<p id='aboutDescription>
       This site is created for Mount Royal University's COMP 3512 (Web Development II) Assignment #2. <br>
