@@ -1,4 +1,5 @@
 <?php
+//much of the methods and classes from this file were grabbed from our PHP lab 14a
 class DatabaseHelper
 {
     /* Returns a connection object to a database */
@@ -51,7 +52,7 @@ class CompaniesDB
     {
         $this->pdo = $connection;
     }
-
+    //grabs all the companies from the datavase
     public function getAll()
     {
         $sql = self::$baseSQL;
@@ -59,6 +60,7 @@ class CompaniesDB
             DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+    //grab a single company from the database based on the company symbol
     public function getSingleCompany($companySymbol)
     {
         $sql = self::$baseSQL . " WHERE symbol=?";
@@ -87,6 +89,7 @@ class HistoryDB
         return $statement->fetchAll();
     }
 
+    //gets all the history of a single company using symbol
     public function getAllCompanySymbol($symbol)
     {
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
@@ -100,6 +103,7 @@ class HistoryDB
         return $statement->fetchAll();
     }
 
+    //get all the history of a single company sorted by a certain variable
     public function getSortedCompany($symbol, $sort)
     {
         $sql = self::$baseSQL . " SELECT date, open, high, low, close, volume FROM history";
@@ -130,6 +134,7 @@ class PortfolioDB
         return $statement->fetchAll();
     }
 
+    //grabs the portfolio of a specific user
     public function getPortfolio($userId)
     {
         $sql = self::$baseSQL . "SELECT companies.symbol, companies.name, portfolio.amount, h.close, portfolio.amount*h.close
@@ -166,6 +171,7 @@ class UsersDB
         return $statement->fetchAll();
     }
 
+    //gets information of a specific user from the database using their email and password
     public function getUser($email, $password)
     {
         $sql = self::$baseSQL;
@@ -192,6 +198,7 @@ class UsersDB
         }
     }
 
+    //grabs a specific user ID
     public function getID($id) {
         $sql = self::$baseSQL;
         $sql .= " WHERE id=?";

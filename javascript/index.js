@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+    //this file handles the functionality for the hamburger menu
     const hamburgerIcon = document.querySelector(".hamburgerIcon");
     const navLinks = document.querySelector("#navLinks");
 

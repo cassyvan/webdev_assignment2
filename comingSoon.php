@@ -3,6 +3,8 @@ session_start();
 require_once 'includes/config.inc.php';
 require_once 'includes/helpers.inc.php';
 require_once 'includes/db-classes.inc.php';
+
+//For the purpose of this assignment, and to not have so much code repetition, this page is for both the profile and registration page, as they are both "coming soon" pages. 
 ?>
 
 <!DOCTYPE html>

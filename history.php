@@ -28,6 +28,7 @@ require_once 'includes/db-classes.inc.php';
         DBCONNSTRING,
         DBUSER, DBPASS
       ));
+      //retrieve the company history from the database based on the query string given
       if (isset($_GET['symbol'])) {
         if (isset($_GET['sort'])) {
           $historyGateway = new HistoryDB($conn);
@@ -46,6 +47,7 @@ require_once 'includes/db-classes.inc.php';
       die($e->getMessage());
     }
 
+    //output the history data as a table
     function displayTable($history) {
 
       echo "<h1> Monthly Data </h1>";

@@ -64,24 +64,6 @@ displayNav(false, $check);
     
         <h2>Sign In</h2>
     </div>
-
-    <!-- <form action="" method="post" class="register-form">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control">
-          
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" class="form-control">
-           
-        </div>
-        <div class="form-group">
-            <input type="submit" name="login" class="btn btn-primary" value="Login">
-        </div>
-        <p>Don't have an account? <a href="comingSoon.php">Sign up now</a>.</p>
-    </form>
-    </div> -->
     <form class="form" method="post" action="">
             <div id="errormessage">
     <?php

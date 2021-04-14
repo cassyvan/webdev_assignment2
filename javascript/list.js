@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     const companiesAPI = "api-companies.php";
     const companiesList = document.querySelector(".companiesList")
     const loader1 = document.querySelector("#loader1");
     const companies = [];
 
     fetchCompanies();
-    // fetches the list of companies from the API
+    // fetches the list of companies from the API 
     function fetchCompanies() {
         fetch(companiesAPI)
             .then(response => response.json())
@@ -68,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             company.appendChild(symbol);
             company.appendChild(name);
             companiesList.appendChild(company);
+            //handles the pop up function of each logo
             logoDiv.addEventListener("mouseenter", () => logoOnMouse.style.display = "block")
             logoDiv.addEventListener("mouseleave", () => logoOnMouse.style.display = "none")
             logoDiv.addEventListener("mousemove", (e) => moveLogoDiv(logoOnMouse, e));

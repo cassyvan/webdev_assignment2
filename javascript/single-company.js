@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(companyAPI);
 
     fetchSingleCompany();
-
+    //fetches a single company from the API with the proper query string attached
     function fetchSingleCompany() {
         fetch(companyAPI)
             .then(response => response.json())
@@ -29,14 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
         displayContent(company);
         displayButtons(company);
     }
-
+    //displays the logo of the company
     function displayImage(company) {
         let image = document.createElement("img");
         image.src = `logos/${company[0].symbol}.svg`;
         singleCompany.appendChild(image);
-        console.log(image);
     }
 
+    //display the information such as sector, sub-industry, address, exchange, and description of the company
     function displayContent(company) {
         let heading = document.createElement("h2");
         heading.innerHTML = `${company[0].name} (${company[0].symbol})</br>`;
@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         singleCompany.appendChild(website);
     }
 
+    //displays "Add to Favorites" and "View Stock History" button
     function displayButtons(company) {
 
         let favoriteButton = document.createElement("button");

@@ -18,6 +18,7 @@ require_once 'includes/db-classes.inc.php';
 <?php
 $check = isset($_SESSION["loggedin"]);
 displayNav(false, $check);
+//much of the functionality of this page is handled by JS
 ?>
 
 <body>

@@ -26,7 +26,7 @@ try {
     DBUSER, DBPASS
   ));
   
-
+//connect to the database to retrieve portfolio information based on the user's id
   if (isset($_SESSION["user_id"])) {
     $portfolioGateway = new PortfolioDB($conn);
     $id = $portfolioGateway->getPortfolio($_SESSION["user_id"]);

@@ -27,12 +27,14 @@ displayNav(true, $check);
   <div class="container">
     <?php displayAbout();
     displayCompanies();
+    //if a user is logged in, display links to portfolio, favorites, profile pages, and option to logout. 
     if (isset($_SESSION["loggedin"])){
       displayPortfolio();
       displayFavs();
       displayProfile();
       displayLogout();
     } else {
+      //if user not logged in, display login and sign up option
       displayLogin();
       displaySignup();
     }
