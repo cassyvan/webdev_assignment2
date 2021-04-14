@@ -44,7 +44,7 @@ function getPortfolio($id)
   echo "<h1> Portfolio </h1>";
   //create table and caption row
   echo "<table class=portfolio><tr class='row'>";
-  $tableHeader = array("Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
+  $tableHeader = array("", "Symbol", "Name", "# Shares", "Close ($)", "Value ($)");
   foreach ($tableHeader as $head) {
     echo "<th>" . $head . "</th>";
   }
@@ -58,7 +58,8 @@ function getPortfolio($id)
     foreach ($value as $data) {
 
       if ($data == $value["symbol"]) {
-        echo "<td><img src='logos/$data.svg' style='max-width: 25%'/><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
+        echo "<td id='logoRow'><img src='logos/$data.svg' id='portfolioImg'/></td>";
+        echo "<td><a href='single-company.php?symbol=$data'>" . $data . "</a></td>";
       } else if ($data == $value["name"]) {
         echo "<td><a href='single-company.php?symbol=" . $value['symbol'] . "'>" . $data . "<a/></td>";
       } else if ($data == $value["amount"]) {
