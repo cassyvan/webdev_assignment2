@@ -71,8 +71,8 @@ displayNav(false, $check);
               foreach ($fav as $f => $value) {
                 echo "<li id='fav'>";
                 echo "<img src='logos/" . $value['symbol'] . ".svg' id='favLogo'>";
-                echo "<div id='favNameSymbol'>" . $value['symbol'] . ", ";
-                echo $value['name'] . "</div>";
+                echo "<div id='favNameSymbol'><a href ='single-company.php?symbol=" . $value['symbol'] . "'>" . $value['symbol'] . " </a>";
+                echo "<a href='single-company.php?symbol=" . $value['symbol'] . "'>" . $value['name'] . "</a></div>";
                 echo "<form method='get' action='favorites.php?remove='>";
                 echo "<button class='button' id='remButton' type='submit' name='remove'" . " value='" . $value['symbol'] . "'>Remove</button>";
                 echo "</form>";
